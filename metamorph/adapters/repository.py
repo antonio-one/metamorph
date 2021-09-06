@@ -13,19 +13,19 @@ class BaseRepository(ABC):
         """"""
 
     @abstractmethod
-    def delete(self, keys: PrimaryKey):
+    def delete(self, keys: PrimaryKey) -> Any:
         """"""
 
     @abstractmethod
-    def get(self, number_of_rows: int):
+    def get(self, number_of_rows: int) -> Any:
         """"""
 
     @abstractmethod
-    def update(self, *args, **kwargs):
+    def update(self, primary_key: PrimaryKey) -> Any:
         """"""
 
 
-class EventSourceRepository(ABC):
+class EventSourceRepository(BaseRepository):
     def add(self, base_event: BaseEvent) -> Any:
         sql_command = Event.insert(
             Event(
@@ -41,9 +41,9 @@ class EventSourceRepository(ABC):
         # This API only returns the first column of a composite key. Piccolo needs some maturing.
         return result
 
-    def delete(self, keys: PrimaryKey) -> List[Dict[str, Any]]:
-        timestamp = keys.get("timestamp")
-        event_id = keys.get("event_id")
+    def delete(self, primary_key: PrimaryKey) -> List[Dict[str, Any]]:
+        timestamp = primary_key.get("timestamp")
+        event_id = primary_key.get("event_id")
         sql_command = Event.delete().where(
             Event.created_at == timestamp and Event.event_id == event_id
         )
@@ -60,7 +60,9 @@ class EventSourceRepository(ABC):
         result = sql_command.run_sync()
         return result
 
-    def update(self, timestamp: float, event_id: str) -> List[Dict[str, Any]]:
+    def update(self, primary_key: PrimaryKey) -> List[Dict[str, Any]]:
+        timestamp = primary_key.get("timestamp")
+        event_id = primary_key.get("event_id")
         sql_command = Event.update({Event.is_processed: True}).where(
             Event.created_at == timestamp and Event.event_id == event_id
         )
