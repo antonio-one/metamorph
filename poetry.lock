@@ -548,6 +548,17 @@ python-versions = "*"
 pytest = ">=2.6.0"
 
 [[package]]
+name = "pytest-order"
+version = "1.0.0"
+description = "pytest plugin to run your tests in a specific order"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pytest = ">=5.0"
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -726,7 +737,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "ed904323519454f0ea54c9dfb21ea15e0bdb4759541be0a56284174561c92682"
+content-hash = "275cc04c44fc423422d5c887ef9b392075affec8dbea81a6277733a58f20b104"
 
 [metadata.files]
 asyncpg = [
@@ -1007,6 +1018,10 @@ pytest-asyncio = [
 ]
 pytest-env = [
     {file = "pytest-env-0.6.2.tar.gz", hash = "sha256:7e94956aef7f2764f3c147d216ce066bf6c42948bb9e293169b1b1c880a580c2"},
+]
+pytest-order = [
+    {file = "pytest-order-1.0.0.tar.gz", hash = "sha256:5997a262b31234eebb461f9a9ef24687bf732029b499845a4398b69edb5ac321"},
+    {file = "pytest_order-1.0.0-py3-none-any.whl", hash = "sha256:a4cdf12f4c83c76bdfd6e6088e2e157df7fdf91a9c3e3ca7d8809e8dabce0f4b"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},

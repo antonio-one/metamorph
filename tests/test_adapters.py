@@ -4,7 +4,7 @@ import pytest
 from faker import Faker
 
 from database.tables import Event
-from metamorph.adapters.repository import EventSourceRepository
+from metamorph.adapters.source import EventSourceRepository
 from metamorph.domain.model import BaseEvent
 
 fake = Faker()

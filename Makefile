@@ -1,2 +1,2 @@
-changelog:
-	git log --pretty="- %s"
+testing-fun:
+	pytest -vvv tests/ --fixture_scope=session
