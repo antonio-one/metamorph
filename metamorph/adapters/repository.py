@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Any, Dict, List, NewType
 
 from database.tables import Event
-from metamorph.domain.model import BaseEvent, KafkaBroker
+from metamorph.domain.model import BaseEvent
 
 PrimaryKey = NewType("PrimaryKey", Dict[str, str])
 
@@ -70,14 +70,14 @@ class EventSourceRepository(BaseRepository):
         return result
 
 
-class EventTargetRepository:
-    def add(self, kafka_broker: KafkaBroker, event: BaseEvent):
+class EventTargetRepository(BaseRepository):
+    def add(self, event: BaseEvent):
         """"""
 
     def delete(self, *args, **kwargs):
         return NotImplementedError
 
-    def get(self, *args, **kwargs):
+    def get(self):
         """"""
 
     def update(self, *args, **kwargs):
